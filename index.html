@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pragya Commercial Institute</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy2: #0f1f3a;
+            --gold: #c9962a;
+            --gold-light: #f0c060;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 200;
+            background: rgba(10, 22, 40, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(201, 150, 42, 0.25);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+
+        .nav-logo small {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+            padding: 7px 18px;
+            border-radius: 4px;
+            font-weight: 700 !important;
+        }
+
+        .ham {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 210;
+        }
+
+        .ham span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .ham.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .ham.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .ham.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 22, 40, 0.99);
+            z-index: 199;
+            padding: 24px;
+            flex-direction: column;
+            gap: 0;
+            border-bottom: 1px solid rgba(201, 150, 42, 0.2);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: color .2s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold-light);
+        }
+
+        .mobile-menu .mob-cta {
+            margin-top: 16px;
+            background: var(--gold);
+            color: var(--navy);
+            text-align: center;
+            padding: 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(160deg, rgba(10, 22, 40, 0.98) 0%, rgba(10, 22, 40, 0.88) 55%, rgba(10, 22, 40, 0.98) 100%), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9962a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 150, 42, 0.13) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(201, 150, 42, 0.14);
+            border: 1px solid rgba(201, 150, 42, 0.4);
+            color: var(--gold-light);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: fadeUp .6s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            line-height: 1.1;
+            font-weight: 900;
+            animation: fadeUp .7s .1s ease both;
+        }
+
+        .hero h1 em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .hero-sub {
+            margin-top: 18px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.68);
+            line-height: 1.7;
+            animation: fadeUp .7s .2s ease both;
+        }
+
+        .hero-since {
+            display: inline-block;
+            margin-top: 14px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            opacity: .75;
+            animation: fadeUp .7s .25s ease both;
+        }
+
+        .hero-btns {
+            margin-top: 30px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            animation: fadeUp .7s .35s ease both;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 13px 28px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 20px rgba(201, 150, 42, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 150, 42, 0.5);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            color: var(--white);
+            padding: 13px 28px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            background: rgba(201, 150, 42, 0.1);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.28);
+            border-radius: 16px;
+            padding: 28px;
+            animation: fadeUp .8s .3s ease both;
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-box {
+            background: rgba(201, 150, 42, 0.09);
+            border: 1px solid rgba(201, 150, 42, 0.2);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 4px;
+        }
+
+        .hero-contact {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .ci-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 0.88rem;
+        }
+
+        .ci-row a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .speed-section {
+            background: linear-gradient(135deg, #0f1e38 0%, #071020 100%);
+            border-top: 1px solid rgba(201, 150, 42, 0.2);
+            border-bottom: 1px solid rgba(201, 150, 42, 0.2);
+            padding: 70px 24px;
+        }
+
+        .speed-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .speed-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .speed-title-block .section-tag {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.82rem;
+            color: var(--gold);
+            opacity: .8;
+            margin-bottom: 8px;
+        }
+
+        .speed-title-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 900;
+        }
+
+        .speed-title-block h2 em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .speed-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .leaderboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .lb-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s, border-color .3s;
+        }
+
+        .lb-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+        }
+
+        .lb-card.gold-card {
+            border-color: rgba(201, 150, 42, 0.5);
+            background: rgba(201, 150, 42, 0.07);
+        }
+
+        .lb-card.gold-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+        }
+
+        .lb-rank {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            color: rgba(201, 150, 42, 0.18);
+            line-height: 1;
+            position: absolute;
+            top: 16px;
+            right: 20px;
+        }
+
+        .lb-card.gold-card .lb-rank {
+            color: rgba(201, 150, 42, 0.35);
+        }
+
+        .lb-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .lb-course {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 16px;
+        }
+
+        .lb-speeds {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .speed-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(201, 150, 42, 0.1);
+            border: 1px solid rgba(201, 150, 42, 0.25);
+            border-radius: 8px;
+            padding: 10px 16px;
+            min-width: 80px;
+        }
+
+        .speed-val {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .speed-unit {
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 2px;
+            letter-spacing: .5px;
+        }
+
+        .lb-accuracy {
+            margin-top: 14px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .lb-accuracy strong {
+            color: #4ade80;
+        }
+
+        .lb-date {
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .speed-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .sf-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color .2s;
+        }
+
+        .sf-box:hover {
+            border-color: rgba(201, 150, 42, 0.4);
+        }
+
+        .sf-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .sf-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .sf-desc {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .sw {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 24px;
+        }
+
+        .section-tag {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            font-size: 0.82rem;
+            color: var(--gold);
+            opacity: .8;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .section-title em {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .section-desc {
+            color: rgba(255, 255, 255, 0.62);
+            max-width: 560px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .courses-grid {
+            margin-top: 44px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.18);
+            border-radius: 12px;
+            padding: 26px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gold);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: .3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        .course-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .course-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .course-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .course-card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.58);
+            line-height: 1.6;
+        }
+
+        .course-badge {
+            display: inline-block;
+            margin-top: 12px;
+            background: rgba(201, 150, 42, 0.15);
+            color: var(--gold-light);
+            padding: 3px 11px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+
+        .targets-bg {
+            background: linear-gradient(135deg, rgba(201, 150, 42, 0.07) 0%, rgba(10, 22, 40, 0) 100%);
+        }
+
+        .targets-grid {
+            margin-top: 44px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 16px;
+        }
+
+        .target-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 10px;
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color .2s, background .2s;
+        }
+
+        .target-item:hover {
+            border-color: var(--gold);
+            background: rgba(201, 150, 42, 0.08);
+        }
+
+        .ti-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .ti-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .why-grid {
+            margin-top: 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 22px;
+            transition: border-color .2s;
+        }
+
+        .why-item:hover {
+            border-color: rgba(201, 150, 42, 0.4);
+        }
+
+        .why-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            color: rgba(201, 150, 42, 0.18);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .why-item h4 {
+            font-size: 0.97rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .why-item p {
+            font-size: 0.84rem;
+            color: rgba(255, 255, 255, 0.58);
+            line-height: 1.6;
+        }
+
+        .testi-bg {
+            background: rgba(201, 150, 42, 0.05);
+            border-top: 1px solid rgba(201, 150, 42, 0.15);
+            border-bottom: 1px solid rgba(201, 150, 42, 0.15);
+        }
+
+        .testi-box {
+            margin-top: 36px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.3);
+            border-radius: 16px;
+            padding: 36px;
+            max-width: 680px;
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .q-mark {
+            font-size: 3.5rem;
+            color: var(--gold);
+            line-height: .6;
+            opacity: .45;
+            margin-bottom: 14px;
+        }
+
+        .testi-text {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.82);
+            font-style: italic;
+        }
+
+        .testi-author {
+            margin-top: 18px;
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .free-wrap {
+            padding: 0 24px 70px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .free-banner {
+            margin-top: 45px;
+            background: linear-gradient(135deg, var(--gold) 0%, #e8a820 100%);
+            border-radius: 16px;
+            padding: 44px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .free-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--navy);
+            font-weight: 900;
+        }
+
+        .free-banner p {
+            color: rgba(10, 22, 40, 0.72);
+            margin-top: 7px;
+            font-size: 0.92rem;
+        }
+
+        .free-list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            list-style: none;
+        }
+
+        .free-list li {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.88rem;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .free-list li::before {
+            content: 'checkmark';
+            font-weight: 900;
+        }
+
+        .free-btn {
+            background: var(--navy);
+            color: var(--gold);
+            padding: 15px 34px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 4px 20px rgba(10, 22, 40, 0.35);
+            transition: transform .2s;
+        }
+
+        .free-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ===== CONTACT — FIXED ===== */
+        .contact-bg {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-grid {
+            margin-top: 44px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.2);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 22px;
+        }
+
+        .cd {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+
+        .cd:last-child {
+            margin-bottom: 0;
+        }
+
+        .cd .ci {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .cd h4 {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 3px;
+            letter-spacing: .5px;
+        }
+
+        .cd p {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .cd a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 150, 42, 0.2);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .contact-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .fg {
+            margin-bottom: 14px;
+        }
+
+        .fg label {
+            display: block;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 5px;
+            letter-spacing: .5px;
+        }
+
+        .fg input,
+        .fg select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 6px;
+            padding: 10px 13px;
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .fg input:focus,
+        .fg select:focus {
+            border-color: var(--gold);
+        }
+
+        .fg select option {
+            background: var(--navy);
+        }
+
+        .contact-cta-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .sub-btn {
+            flex: 1;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity .2s, transform .2s;
+        }
+
+        .sub-btn:hover {
+            opacity: .9;
+            transform: translateY(-1px);
+        }
+
+        .wa-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(37, 211, 102, 0.15);
+            border: 1px solid rgba(37, 211, 102, 0.4);
+            color: #25d366;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background .2s;
+            white-space: nowrap;
+        }
+
+        .wa-btn:hover {
+            background: rgba(37, 211, 102, 0.25);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.45);
+            border-top: 1px solid rgba(201, 150, 42, 0.15);
+            padding: 36px 24px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .footer-tag {
+            color: rgba(255, 255, 255, 0.38);
+            font-size: 0.84rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            list-style: none;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.45);
+            text-decoration: none;
+            font-size: 0.84rem;
+            transition: color .2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.22);
+            font-size: 0.76rem;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .hero {
+                padding: 90px 20px 50px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .free-banner {
+                padding: 32px 24px;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .free-list {
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .ham {
+                display: flex;
+            }
+
+            .leaderboard {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:640px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .targets-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .leaderboard {
+                grid-template-columns: 1fr;
+            }
+
+            .speed-facts {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .sw {
+                padding: 50px 18px;
+            }
+
+            .free-wrap {
+                padding: 0 18px 50px;
+            }
+
+            .speed-section {
+                padding: 50px 18px;
+            }
+
+            .contact-form,
+            .contact-info {
+                padding: 22px 18px;
+            }
+
+            .hero-card {
+                padding: 22px;
+            }
+
+            .free-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-cta-row {
+                flex-direction: column;
+            }
+        }
+
+        @media(max-width:380px) {
+            .targets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-logo">Pragya Commercial Institute 🔥<small>Sahibganj, Jharkhand · Est. 2009</small></div>
+        <ul class="nav-links">
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#speed">Speed Records</a></li>
+            <li><a href="#targets">Targets</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+        </ul>
+        <div class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </nav>
+    <div class="mobile-menu" id="mob-menu">
+        <a href="#courses" onclick="closeMenu()">Courses</a>
+        <a href="#speed" onclick="closeMenu()">Speed Records</a>
+        <a href="#targets" onclick="closeMenu()">Exam Targets</a>
+        <a href="#why" onclick="closeMenu()">Why Us</a>
+        <a href="#contact" class="mob-cta" onclick="closeMenu()">Enroll Now</a>
+    </div>
+
+    <div class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-badge">🏆 Trusted Since 2009 · 16+ Years of Results</div>
+                <h1>Master <em>Typing &amp;</em> Shorthand for Govt Exams</h1>
+                <p class="hero-sub">Jharkhand's most dedicated coaching for Computer Typewriting, Stenography &amp;
+                    Shorthand — producing top-speed typists who crack SSC, Railways, Courts &amp; more.</p>
+                <span class="hero-since">PRAGYA COMMERCIAL INSTITUTE · SAHIBGANJ</span>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn-primary">Enroll Now →</a>
+                    <a href="#courses" class="btn-outline">View Courses</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>📊 Institute at a Glance</h3>
+                <div class="stat-row">
+                    <div class="stat-box">
+                        <div class="stat-num">2009</div>
+                        <div class="stat-label">Established</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">4</div>
+                        <div class="stat-label">Courses</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">52+</div>
+                        <div class="stat-label">WPM Record Speed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">FREE</div>
+                        <div class="stat-label">Study Materials</div>
+                    </div>
+                </div>
+                <div class="hero-contact">
+                    <div class="ci-row">📞 <a href="tel:8825260840">88252 60840</a></div>
+                    <div class="ci-row">📍 <span>Girls' High School, Chowk Bazar, Sahibganj, JH</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="speed-section" id="speed">
+        <div class="speed-inner">
+            <div class="speed-header">
+                <div class="speed-title-block">
+                    <div class="section-tag">⚡ Student Achievements</div>
+                    <h2 class="section-title" style="margin-bottom:0">Our Fastest <em>Typists</em></h2>
+                </div>
+                <p class="speed-subtitle">Real typing test results from our students — proof that Pragya training
+                    delivers exceptional speed &amp; accuracy.</p>
+            </div>
+            <div class="leaderboard">
+                <div class="lb-card gold-card">
+                    <div class="lb-rank">#1</div>
+                    <div class="lb-name">K.S.</div>
+                    <div class="lb-course">🖥️ English Computer Typewriting</div>
+                    <div class="lb-speeds">
+                        <div class="speed-pill">
+                            <div class="speed-val">52</div>
+                            <div class="speed-unit">WPM</div>
+                        </div>
+                        <div class="speed-pill">
+                            <div class="speed-val">262</div>
+                            <div class="speed-unit">KPM</div>
+                        </div>
+                    </div>
+                    <div class="lb-accuracy">Accuracy: <strong>96% (Very Good)</strong></div>
+                    <div class="lb-date">📅 May 2026 · Pragya Institute</div>
+                </div>
+                <div class="lb-card">
+                    <div class="lb-rank">#2</div>
+                    <div class="lb-name">Karuna Kumari</div>
+                    <div class="lb-course">🖥️ English Computer Typewriting</div>
+                    <div class="lb-speeds">
+                        <div class="speed-pill">
+                            <div class="speed-val">64</div>
+                            <div class="speed-unit">WPM</div>
+                        </div>
+                        <div class="speed-pill">
+                            <div class="speed-val">160</div>
+                            <div class="speed-unit">KPM</div>
+                        </div>
+                    </div>
+                    <div class="lb-accuracy">Total Errors: <strong style="color:#facc15;">03 (Excellent)</strong></div>
+                    <div class="lb-date">📅 May 2026 · Pragya Institute</div>
+                </div>
+                <div class="lb-card">
+                    <div class="lb-rank">#1</div>
+                    <div class="lb-name">Hindi Topper</div>
+                    <div class="lb-course">🖥️ Hindi Computer Typewriting</div>
+                    <div class="lb-speeds">
+                        <div class="speed-pill">
+                            <div class="speed-val">35+</div>
+                            <div class="speed-unit">WPM</div>
+                        </div>
+                        <div class="speed-pill">
+                            <div class="speed-val">175+</div>
+                            <div class="speed-unit">KPM</div>
+                        </div>
+                    </div>
+                    <div class="lb-accuracy">Exceeds: <strong>Govt exam speed requirement ✓</strong></div>
+                    <div class="lb-date">📅 Pragya Institute · Sahibganj</div>
+                </div>
+            </div>
+            <div class="speed-facts">
+                <div class="sf-box">
+                    <div class="sf-icon">⚡</div>
+                    <div class="sf-num">262</div>
+                    <div class="sf-desc">Highest KPM achieved by our student</div>
+                </div>
+                <div class="sf-box">
+                    <div class="sf-icon">🎯</div>
+                    <div class="sf-num">96%</div>
+                    <div class="sf-desc">Top accuracy score achieved</div>
+                </div>
+                <div class="sf-box">
+                    <div class="sf-icon">🏅</div>
+                    <div class="sf-num">Daily</div>
+                    <div class="sf-desc">Speed practice sessions every day</div>
+                </div>
+                <div class="sf-box">
+                    <div class="sf-icon">📈</div>
+                    <div class="sf-num">SSC+</div>
+                    <div class="sf-desc">Speed exceeds all govt exam requirements</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.018);" id="courses">
+        <div class="sw">
+            <div class="section-tag">What We Teach</div>
+            <h2 class="section-title">Our <em>Courses</em></h2>
+            <p class="section-desc">Specialized skill-based training to help you clear typing &amp; shorthand tests in
+                every major government exam.</p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">🖥️</div>
+                    <h3>English Computer Typewriting</h3>
+                    <p>Build high speed &amp; accuracy in English typing. Daily exam-pattern practice with speed
+                        tracking.</p><span class="course-badge">Most Popular</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">🖥️</div>
+                    <h3>Hindi Computer Typewriting</h3>
+                    <p>Hindi typing in Kruti Dev &amp; Mangal fonts — exactly as required in government typing tests.
+                    </p><span class="course-badge">Govt Required</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">✍️</div>
+                    <h3>Hindi Shorthand / Stenography</h3>
+                    <p>Complete Hindi shorthand with dictation practice — targeting court &amp; railway steno posts.</p>
+                    <span class="course-badge">Steno Special</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">✍️</div>
+                    <h3>English Shorthand / Stenography</h3>
+                    <p>English stenography speed building from beginner to exam-ready level with live dictation.</p>
+                    <span class="course-badge">Steno Special</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="targets-bg" id="targets">
+        <div class="sw">
+            <div class="section-tag">Exam Preparation</div>
+            <h2 class="section-title">Government Exam <em>Targets</em></h2>
+            <p class="section-desc">Our courses are tailored to clear the skill tests of these major government exams.
+            </p>
+            <div class="targets-grid">
+                <div class="target-item">
+                    <div class="ti-icon">🏛️</div>
+                    <div class="ti-name">SSC (CGL / CHSL / Steno)</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🏛️</div>
+                    <div class="ti-name">State SSC Jharkhand</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🚂</div>
+                    <div class="ti-name">Indian Railways</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">⚖️</div>
+                    <div class="ti-name">District &amp; High Courts</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🪖</div>
+                    <div class="ti-name">Paramilitary Forces</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🏫</div>
+                    <div class="ti-name">Central Schools (KVS)</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🏫</div>
+                    <div class="ti-name">Navodaya Vidyalaya (NVS)</div>
+                </div>
+                <div class="target-item">
+                    <div class="ti-icon">🏥</div>
+                    <div class="ti-name">AIIMS Recruitment</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="why">
+        <div class="sw">
+            <div class="section-tag">Why Choose Us</div>
+            <h2 class="section-title">What Makes <em>Pragya</em> Different</h2>
+            <p class="section-desc">We don't just teach typing — we create exam-ready, high-speed government job
+                candidates.</p>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-num">01</div>
+                    <div>
+                        <h4>16+ Years of Excellence</h4>
+                        <p>Established in 2009, Pragya has over 16 years of experience producing successful government
+                            servants from Jharkhand.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">02</div>
+                    <div>
+                        <h4>Proven Top Speed Results</h4>
+                        <p>Our students regularly achieve 50+ WPM and 260+ KPM — speeds that exceed all government exam
+                            requirements by a wide margin.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">03</div>
+                    <div>
+                        <h4>Free Study Materials</h4>
+                        <p>Every enrolled student receives free study materials for typing, shorthand, and all subjects
+                            — zero extra cost.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">04</div>
+                    <div>
+                        <h4>Regular Govt Vacancy Updates</h4>
+                        <p>We keep students informed about the latest SSC, Railway, Court and all government job
+                            openings so you never miss an opportunity.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">05</div>
+                    <div>
+                        <h4>Both Hindi &amp; English</h4>
+                        <p>Dual-language training — complete preparation for the bilingual requirements of central and
+                            state government exams.</p>
+                    </div>
+                </div>
+                <div class="why-item">
+                    <div class="why-num">06</div>
+                    <div>
+                        <h4>Exam-Pattern Daily Practice</h4>
+                        <p>Daily practice sessions designed exactly as per government exam typing test formats — speed,
+                            accuracy and real exam simulation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testi-bg">
+        <div class="sw" style="text-align:center;">
+            <div class="section-tag">Student Review</div>
+            <div class="testi-box">
+                <div class="q-mark">"</div>
+                <p class="testi-text">This is the best institute in India because not only typing and stenography are
+                    taught here, but students are also fully prepared for competitive exams. Thank you, Bhaiya.</p>
+                <div class="testi-author">— A Student of Pragya Commercial Institute</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="free-wrap">
+        <div class="free-banner">
+            <div>
+                <h2>Free Resources for All Students 🎁</h2>
+                <p>Everything you need to crack your government exam — at no extra cost</p>
+                <ul class="free-list">
+                    <li>Free Study Materials for All Subjects</li>
+                    <li>Regular Government Vacancy Updates</li>
+                    <li>Exam Pattern Speed Practice Sets</li>
+                    <li>Daily Speed Building Sessions</li>
+                </ul>
+            </div>
+            <a href="#contact" class="free-btn">Join Today →</a>
+        </div>
+    </div>
+
+    <!-- CONTACT — FIXED: always side by side, no textarea -->
+    <div class="contact-bg" id="contact">
+        <div class="sw">
+            <div class="section-tag">Get In Touch</div>
+            <h2 class="section-title">Enroll or <em>Inquire</em></h2>
+            <div class="contact-grid">
+
+                <div class="contact-info">
+                    <h3>📍 Visit Us</h3>
+                    <div class="cd">
+                        <span class="ci">📍</span>
+                        <div>
+                            <h4>ADDRESS</h4>
+                            <p>Girls' High School, Chowk Bazar,<br>Sahibganj, Jharkhand</p>
+                        </div>
+                    </div>
+                    <div class="cd">
+                        <span class="ci">📞</span>
+                        <div>
+                            <h4>PHONE / WHATSAPP</h4>
+                            <p><a href="tel:8825260840">88252 60840</a></p>
+                        </div>
+                    </div>
+                    <div class="cd">
+                        <span class="ci">⏰</span>
+                        <div>
+                            <h4>BATCHES</h4>
+                            <p>Morning &amp; Evening Batches Available</p>
+                        </div>
+                    </div>
+                    <div class="cd">
+                        <span class="ci">📱</span>
+                        <div>
+                            <h4>INSTAGRAM</h4>
+                            <p><a href="https://instagram.com/binayaksooryawanshi"
+                                    target="_blank">@binayaksooryawanshi</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>✉️ Send an Inquiry</h3>
+                    <div class="fg">
+                        <label>YOUR NAME</label>
+                        <input type="text" placeholder="Enter your full name">
+                    </div>
+                    <div class="fg">
+                        <label>PHONE NUMBER</label>
+                        <input type="tel" placeholder="Your WhatsApp number">
+                    </div>
+                    <div class="fg">
+                        <label>COURSE INTERESTED IN</label>
+                        <select>
+                            <option value="">Select a course</option>
+                            <option>English Computer Typewriting</option>
+                            <option>Hindi Computer Typewriting</option>
+                            <option>Hindi Shorthand / Stenography</option>
+                            <option>English Shorthand / Stenography</option>
+                        </select>
+                    </div>
+                    <div class="fg">
+                        <label>TARGET EXAM</label>
+                        <select>
+                            <option value="">Select your target</option>
+                            <option>SSC (CGL/CHSL/Steno)</option>
+                            <option>State SSC Jharkhand</option>
+                            <option>Railways</option>
+                            <option>Courts</option>
+                            <option>Paramilitary Forces</option>
+                            <option>Central School / NVS</option>
+                            <option>AIIMS</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="contact-cta-row">
+                        <button class="sub-btn"
+                            onclick="alert('Thank you! We will contact you on WhatsApp shortly.\n📞 Call: 8825260840')">Submit
+                            Inquiry →</button>
+                        <a class="wa-btn" href="https://wa.me/918825260840" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Pragya Commercial Institute 🔥</div>
+        <p class="footer-tag">Sahibganj, Jharkhand · Serving Students Since 2009</p>
+        <ul class="footer-links">
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#speed">Speed Records</a></li>
+            <li><a href="#targets">Exam Targets</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 Pragya Commercial Institute, Sahibganj. All rights reserved. | 📞 8825260840</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('ham').classList.toggle('open');
+            document.getElementById('mob-menu').classList.toggle('open');
+        }
+        function closeMenu() {
+            document.getElementById('ham').classList.remove('open');
+            document.getElementById('mob-menu').classList.remove('open');
+        }
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('nav') && !e.target.closest('.mobile-menu')) closeMenu();
+        });
+    </script>
+
+    <!-- ----------------------------Chatbot----------------------------- -->
+
+    <script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://n8n-mlns.srv1653752.hstgr.cloud/webhook/04211ac5-4ac1-47df-98d4-9941ef1c34af/chat'
+	});
+</script>
+
+</body>
+
+</html>
